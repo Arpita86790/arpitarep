@@ -1,10 +1,18 @@
-
-import { config } from './config'
-
-// path = user/login
-// url = http://localhost:4000/
-// http://localhost:4000/user/login
-export function createUrl(path) {
-  return `${config.serverUrl}/${path}`
-}
-
+function createError(error) {
+    return { status: 'error', error }
+  }
+  
+  function createSuccess(data) {
+    return { status: 'success', data }
+  }
+  
+  function createResult(error, data) {
+    return error ? createError(error) : createSuccess(data)
+  }
+  
+  module.exports = {
+    createError,
+    createSuccess,
+    createResult,
+  }
+  
